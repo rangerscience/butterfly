@@ -1,5 +1,6 @@
 module Effects
   class Context
+    attr_reader :size
     attr_accessor :color, :position, :time
 
     def initialize size, p: 0, t: Time.now, c: Colors::Black

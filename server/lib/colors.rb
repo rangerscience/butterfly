@@ -19,7 +19,10 @@ module Colors
       r, g, b = p, q, v if h_i==3
       r, g, b = t, p, v if h_i==4
       r, g, b = v, p, q if h_i==5
-      [(r*255).to_i, (g*255).to_i, (b*255).to_i]
+
+      ((r*255).to_i << 16) +
+      ((g*255).to_i << 8) +
+      ((b*255).to_i)
     end
 
     def blend c1, c2, r

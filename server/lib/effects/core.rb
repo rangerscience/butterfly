@@ -17,7 +17,7 @@ module Effects
     class Wheel < Effect
       attribute :wavelength, :saturation, :value
 
-      def initialize w:, s: 100, v: 100
+      def initialize w, s: 100, v: 100
         @wavelength = w
         @saturation = s
         @value = v

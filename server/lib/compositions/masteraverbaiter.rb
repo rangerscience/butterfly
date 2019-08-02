@@ -8,7 +8,7 @@ module Compositions
     # Multiple moving rainbow
     Effects::Meta::Composition.new(
         Effects::Meta::Moving.new(f: 1),
-        Effects::Core::Wheel.new(w: 150)
+        Effects::Core::Wheel.new(150)
     ),
 
     # A black->white pulse
