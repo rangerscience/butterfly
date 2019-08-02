@@ -1,0 +1,5 @@
+example_id                      | status | run_time        |
+------------------------------- | ------ | --------------- |
+./spec/lib/effects_spec.rb[1:1] | passed | 0.00046 seconds |
+./spec/lib/effects_spec.rb[1:2] | passed | 0.00005 seconds |
+./spec/lib/effects_spec.rb[1:3] | passed | 0.00007 seconds |
