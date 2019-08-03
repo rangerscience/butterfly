@@ -23,8 +23,8 @@ Use branches, forks, and pull requests! Don't commit to master.
 
 Instructions and files for setting up the hardware should go into the corresponding folders.
 
-`server/lib/effects` contains the various basic effects out of which patterns can be made. Please add more!
-`server/lib/compositions` contains preset patterns. Please add more!
-`server/lib/serial` contains the code for pushing data to the Arduinos over serial connections (currently USB serial)
+- `server/lib/effects` contains the various basic effects out of which patterns can be made. Please add more!
+- `server/lib/compositions` contains preset patterns. Please add more!
+- `server/lib/serial` contains the code for pushing data to the Arduinos over serial connections (currently USB serial)
 
 RSpec for testing. All tests currently pass, please keep it that way :)
