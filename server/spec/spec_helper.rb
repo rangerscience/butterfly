@@ -3,6 +3,14 @@ Dir[File.join("./lib", "**/*.rb")].each do |f|
   require f
 end
 
+module PrintHex
+  def to_hex_s
+    "0x" + to_s(16).upcase.rjust(6, '0')
+  end
+end
+
+Integer.include PrintHex
+
 RSpec.configure do |config|
 
   config.expect_with :rspec do |expectations|

@@ -24,11 +24,16 @@ module Colors
       ((g*255).to_i << 8) +
       ((b*255).to_i)
     end
-
     def blend c1, c2, r
       # Can't really do fancier math, but could mabe unroll the loop, etc
-      c2 + [0xFF0000, 0x00FF00, 0x0000FF].collect do |m|
-        (((m & c1) - (m & c2)) * r).to_i & m
+      [0xFF0000, 0x00FF00, 0x0000FF].collect do |m|
+        _c1 = c1 & m
+        _c2 = c2 & m
+        if _c1 < _c2
+          _c1 + (_c2 - _c1) * r
+        else
+          _c2 + (_c1 - _c2) * (1-r)
+        end.to_i & m
       end.sum
     end
   end

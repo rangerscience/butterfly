@@ -32,14 +32,13 @@ module Effects
     end
 
     class Pulse < Effect
-      attribute :position, :color, :inner_color, :inner_width, :outer_color, :outer_width
+      attribute :position, :color, :inner_color, :inner_width, :outer_width
 
-      def initialize p:, c:, ic:, iw:, oc:, ow:
+      def initialize p:, c:, ic:, iw:, ow:
         @position = p
         @color = c
         @inner_color = ic
         @inner_width = iw
-        @outer_color = oc
         @outer_width = ow
       end
 
@@ -49,8 +48,8 @@ module Effects
         elsif (position - inner_width) <= c.position && c.position <= (position + inner_width)
           c.color = inner_color
         elsif (position - inner_width - outer_width) <= c.position && c.position <= (position + inner_width + outer_width)
-          percent = (c.position - position).abs / (inner_width + outer_width)
-          c.color = Colors.blend c.color, color, percent
+          percent = ((outer_width - (c.position - position).abs).abs - inner_width).abs.to_f / outer_width
+          c.color = Colors.blend c.color, inner_color, percent
         end
         c
       end

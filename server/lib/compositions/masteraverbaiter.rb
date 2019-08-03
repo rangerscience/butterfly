@@ -19,8 +19,7 @@ module Compositions
         c: Colors::White,
         iw: 2,
         ic: Colors::Black,
-        ow: 6,
-        oc: Colors::Black,
+        ow: 6
       )
     ),
 
@@ -32,8 +31,7 @@ module Compositions
         c: Colors::Green,
         iw: 2,
         ic: Colors::Yellow,
-        ow: 6,
-        oc: Colors::Yellow,
+        ow: 6
       )
     ),
 
@@ -45,8 +43,7 @@ module Compositions
         c: Colors::Black,
         iw: 8,
         ic: Colors::White,
-        ow: 10,
-        oc: Colors::White,
+        ow: 10
       )
     ),
   )
