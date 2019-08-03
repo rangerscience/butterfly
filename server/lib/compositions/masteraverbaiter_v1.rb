@@ -1,33 +1,36 @@
 require_relative '../effects.rb'
 module Compositions
-  MASTERAVERBAITER = Effects::Meta::Composition.new(
+  # MRB_V1 is also used in testing,
+  # so make new ones rather than modifying this one :)
+
+  MASTERAVERBAITER_V1 = Effects::Meta::Composition.new(
 
     # Draw onto a black background
     Effects::Core::Wipe.new(Colors::Black),
 
     # Multiple moving rainbow
     Effects::Meta::Composition.new(
-        Effects::Meta::Moving.new(f: 1),
+        Effects::Meta::Moving.new(1),
         Effects::Core::Wheel.new(150)
     ),
 
     # A black->white pulse
     Effects::Meta::Composition.new(
-      Effects::Meta::Moving.new(f: 1.5),
+      Effects::Meta::Moving.new(2),
       Effects::Core::Pulse.new(
         p: 15,
-        c: Colors::White,
+        c: 0xFFFFFF,
         iw: 2,
-        ic: Colors::Black,
+        ic: 0x000000,
         ow: 6
       )
     ),
 
     # A yellow->green pulse
     Effects::Meta::Composition.new(
-      Effects::Meta::Moving.new(f: 1),
+      Effects::Meta::Moving.new(1),
       Effects::Core::Pulse.new(
-        p: 15,
+        p: 35,
         c: Colors::Green,
         iw: 2,
         ic: Colors::Yellow,
@@ -37,12 +40,12 @@ module Compositions
 
     # A white->black pulse
     Effects::Meta::Composition.new(
-      Effects::Meta::Moving.new(f: -1),
+      Effects::Meta::Moving.new(-1),
       Effects::Core::Pulse.new(
-        p: 15,
-        c: Colors::Black,
+        p: 55,
+        c: 0x000000,
         iw: 8,
-        ic: Colors::White,
+        ic: 0xFFFFFF,
         ow: 10
       )
     ),
