@@ -1,15 +1,17 @@
 require 'rubyserial'
 
+module PrintHex
+  def to_hex_s
+    "0x" + to_s(16).upcase.rjust(6, '0')
+  end
+end
+Integer.include PrintHex
+
 module Arduino
-
   class SerialOut
-    attr_accessor :playing, :frame
-    attr_reader :ports, :connections, :func, :frame_size, :slice_size
+    attr_reader :ports, :connections, :slice_size
 
-    def initialize &func
-      @func = func
-      @frame = func.call
-
+    def initialize
       # Establish the connections
       @connections = if RUBY_PLATFORM =~ /darwin/ # MacOS
         @ports = `ls /dev/cu.*`.split("\n").select{|s| s =~ /cu.usbmodem/}
@@ -21,47 +23,14 @@ module Arduino
       end
     end
 
-    def play
-      @playing = true
-      if @connections.size == 0
-        @frame = fake_play
-      else
-        @frame = real_play
-      end
-      @playing = false
-      @frame
-    end
-
-    private
-
-    def fake_play
-      @frame = func.call
-      while(@playing) do
-        # Render the frame, and do nothing with it....
-        @frame = func.call
-        sleep(0.1)
-      end
-      @frame
-    end
-
-    def real_play
-      # Get a first frame for sizing
-      @frame = func.call
-      @frame_size = frame.size
-      @slice_size = (@frame_size/@connections.size.to_f).round
-
-      while(@playing) do
-        # Render the frame
-        @frame = func.call
-
-        # Split the frame amongst the connections
-        @frame.each_slice( @slice_size ).with_index do |slice, index|
-          @connections[index].write(slice.map(&:chr).join(""))
+    def write frame
+      if @connections.any?
+        slice_size = (frame.size/@connections.size.to_f).round
+        frame.each_slice( slice_size ).with_index do |slice, index|
+          byte_string = slice.map(&:to_chr_bytes).join("")
+          @connections[index].write(byte_string)
         end
       end
-
-      # Return the last frame
-      @frame
     end
   end
 end
