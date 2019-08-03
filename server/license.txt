@@ -1,0 +1,10 @@
+If you wish to use this code under the GNU AGPLv3 license, you are free to do so.
+
+If you wish to do anything else with this code, you must obtain an appropriate license
+from the original author.
+
+The original author retains all possible rights. This license may be change, and may
+only be changed, by the original author.
+
+Original Author: https://github.com/rangerscience
+GNU AGPLv3: https://choosealicense.com/licenses/agpl-3.0/#
