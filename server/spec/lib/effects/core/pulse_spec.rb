@@ -3,7 +3,7 @@ include Effects::Core
 
 describe Pulse do
   it "is colorful" do
-    p = Effects::Core::Pulse.new(
+    p = Pulse.new(
       p: 20,
       c: Colors::Green,
       iw: 5,
@@ -17,7 +17,7 @@ describe Pulse do
   end
 
   it "has a center color" do
-    p = Effects::Core::Pulse.new(
+    p = Pulse.new(
       p: 20,
       c: Colors::Green,
       iw: 5,
@@ -32,7 +32,7 @@ describe Pulse do
   end
 
   it "has an inner color" do
-    p = Effects::Core::Pulse.new(
+    p = Pulse.new(
       p: 20,
       c: Colors::Green,
       iw: 5,
@@ -49,7 +49,7 @@ describe Pulse do
   end
 
   it "has a blended outer color" do
-    p = Effects::Core::Pulse.new(
+    p = Pulse.new(
       p: 20,
       c: Colors::Green,
       iw: 5,

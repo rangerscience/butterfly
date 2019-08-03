@@ -8,9 +8,9 @@ module Effects
       end
 
       def apply c
-        @effects.inject(c.dup) do |c, effect|
+        c.color = @effects.inject(c.dup) do |c, effect|
           effect.apply(c)
-        end
+        end.color
         c
       end
     end
@@ -18,13 +18,14 @@ module Effects
     class Moving
       attr_accessor :frequency
 
-      def initialize f:, s: Time.now
+      def initialize f, s: Time.now
         @frequency = f
         @start = s
       end
 
       def apply c
-        c.position = c.position + ((Time.now.to_i - @start.to_i) * @frequency)
+        #binding.pry
+        c.position = c.position + ((c.time.to_i - @start.to_i) * @frequency)
         c
       end
     end
