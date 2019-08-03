@@ -2,13 +2,13 @@
 
 This is code to control the lights of the Butterfly of https://www.facebook.com/TPATB2019
 
-A Raspberry Pi (see that folder's readme for more) hosts and control server, renders frames,
+A Raspberry Pi (see that folder's readme for more) hosts a control server, renders frames,
 and pushes those frames to connected devices.
 
 Connected Arduinos (well, technically, the Butterfly uses Teensyduinos) then push the frames
 to the LEDs.
 
-The server code is in Ruby.
+The server code is in Ruby; Teensy code is in C.
 
 # Setup
 
