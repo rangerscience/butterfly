@@ -16,15 +16,15 @@ describe MASTERAVERBAITER_V1 do
     # of the last pulse
     expect(strip_colors.select{|c| c == 0xFFFFFF}.count).to eq(8*2 + 1)
 
-    # Peak of the middle pulse
-    expect(strip_colors.select{|c| c == Colors::Green}.count).to eq(1)
+    # Peak of the middle pulse, plus one...?
+    expect(strip_colors.select{|c| c == Colors::Green}.count).to eq(2)
 
-    # Inner of the middle pulse, plus one...?
-    expect(strip_colors.select{|c| c == Colors::Yellow}.count).to eq(4 + 1)
+    # Inner of the middle pulse
+    expect(strip_colors.select{|c| c == Colors::Yellow}.count).to eq(4)
 
     # Everything else :) (just as measured, not actually derived)
     # (it's a deliberately chaotic pattern after all :D)
-    expect(strip_colors.uniq.count).to eq(75)
+    expect(strip_colors.uniq.count).to eq(76)
   end
 
   it "changes over time" do
