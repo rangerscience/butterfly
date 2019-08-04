@@ -35,6 +35,7 @@ module Arduino
           byte_string = slice.map(&:to_rgb_bytes).join("")
           @connections[index].write(byte_string)
         end
+        true
       end
     end
   end
