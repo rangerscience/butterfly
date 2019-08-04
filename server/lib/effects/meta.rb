@@ -25,7 +25,7 @@ module Effects
 
       def apply c
         #binding.pry
-        c.position = c.position + ((c.time.to_i - @start.to_i) * @frequency)
+        c.position = c.position + ((c.time - @start) * @frequency)
         c
       end
     end
