@@ -3,7 +3,14 @@ module IntegerPatches
     "0x" + to_s(16).upcase.rjust(6, '0')
   end
 
-  def to_chr_bytes
+  def to_rgba_bytes
+    ((self & 0xFF0000) >> 16).chr +
+    ((self & 0x00FF00) >>  8).chr +
+    ((self & 0x0000FF)      ).chr +
+    255.chr
+  end
+
+  def to_rgb_bytes
     ((self & 0xFF0000) >> 16).chr +
     ((self & 0x00FF00) >>  8).chr +
     ((self & 0x0000FF)      ).chr

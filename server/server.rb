@@ -9,7 +9,7 @@ require 'pry'
 
 set :server, 'thin'
 set :sockets, []
-set :num_leds, 300
+set :num_leds, 4400
 set :version, File.read('.version').chomp
 
 class Renderer
@@ -48,7 +48,7 @@ def play
 
       # Write out to websockets
       settings.sockets.each do |s|
-        byte_string = frame.map(&:to_chr_bytes).join("")
+        byte_string = frame.map(&:to_rgba_bytes).join("")
         s.send(Base64.encode64(byte_string))
       end
 
@@ -81,6 +81,11 @@ get '/subscribe' do
     "for websockets only"
   end
 end
+
+get '/preview' do
+  slim :preview
+end
+
 
 get '/pry' do
   binding.pry
