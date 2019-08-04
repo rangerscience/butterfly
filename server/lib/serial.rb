@@ -32,7 +32,7 @@ module Arduino
       if @connections.any?
         slice_size = (frame.size/@connections.size.to_f).round
         frame.each_slice( slice_size ).with_index do |slice, index|
-          byte_string = slice.map(&:to_rbg_bytes).join("")
+          byte_string = slice.map(&:to_rgb_bytes).join("")
           @connections[index].write(byte_string)
         end
       end
