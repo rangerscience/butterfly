@@ -15,7 +15,12 @@ module Arduino
       # Establish the connections
       @connections = if RUBY_PLATFORM =~ /darwin/ # MacOS
         @ports = `ls /dev/cu.*`.split("\n").select{|s| s =~ /cu.usbmodem/}
-        ports.collect do |port|
+        @ports.collect do |port|
+          Serial.new port
+        end
+      elsif RUBY_PLATFORM =~ // # Raspberry Pi linux
+        @ports = `ls /dev/ttyACM*`.split("\n")
+        @ports.collect do |port|
           Serial.new port
         end
       else
