@@ -50,6 +50,9 @@ module Effects
         elsif (position - inner_width - outer_width) <= c.position && c.position <= (position + inner_width + outer_width)
           percent = ((outer_width - (c.position - position).abs).abs - inner_width).abs.to_f / (outer_width+1)
           c.color = Colors.blend c.color, inner_color, percent
+        elsif (position - inner_width - outer_width + c.size) <= c.position && c.position <= (position + inner_width + outer_width + c.size)
+          percent = ((outer_width - (c.position - (position - c.size)).abs).abs - inner_width).abs.to_f / (outer_width+1)
+          c.color = Colors.blend c.color, inner_color, percent
         end
         c
       end

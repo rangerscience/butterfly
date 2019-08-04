@@ -11,19 +11,14 @@ module Compositions
     # Multiple moving rainbow
     Effects::Meta::Composition.new(
         Effects::Meta::Moving.new(1),
-        Effects::Core::Wheel.new(150)
-    ),
-
-    # A black->white pulse
-    Effects::Meta::Composition.new(
-      Effects::Meta::Moving.new(2),
-      Effects::Core::Pulse.new(
-        p: 15,
-        c: 0xFFFFFF,
-        iw: 2,
-        ic: 0x000000,
-        ow: 6
-      )
+        Effects::Core::Wheel.new(225),
+        Effects::Core::Pulse.new(
+          p: 0,
+          c: 0xFFFFFF,
+          iw: 4,
+          ic: 0x000000,
+          ow: 8
+        )
     ),
 
     # A yellow->green pulse
