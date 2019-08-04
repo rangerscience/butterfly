@@ -3,6 +3,7 @@ module Compositions
   # MRB_V1 is also used in testing,
   # so make new ones rather than modifying this one :)
 
+  MRB_V1_FR = 8
   MASTERAVERBAITER_V1 = Effects::Meta::Composition.new(
 
     # Draw onto a black background
@@ -10,8 +11,8 @@ module Compositions
 
     # Multiple moving rainbow
     Effects::Meta::Composition.new(
-        Effects::Meta::Moving.new(1),
-        Effects::Core::Wheel.new(225),
+        Effects::Meta::Moving.new(1 * MRB_V1_FR),
+        Effects::Core::Wheel.new(111),
         Effects::Core::Pulse.new(
           p: 0,
           c: 0xFFFFFF,
@@ -23,7 +24,7 @@ module Compositions
 
     # A yellow->green pulse
     Effects::Meta::Composition.new(
-      Effects::Meta::Moving.new(1),
+      Effects::Meta::Moving.new(2 * MRB_V1_FR),
       Effects::Core::Pulse.new(
         p: 35,
         c: Colors::Green,
@@ -35,7 +36,7 @@ module Compositions
 
     # A white->black pulse
     Effects::Meta::Composition.new(
-      Effects::Meta::Moving.new(-1),
+      Effects::Meta::Moving.new(-1 * MRB_V1_FR),
       Effects::Core::Pulse.new(
         p: 55,
         c: 0x000000,
