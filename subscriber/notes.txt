@@ -1,0 +1,6 @@
+Use this (on MacOS and Pi) to get the Pi's IP address:
+
+$ ping -c 1 butterfly.local
+> PING butterfly.local (192.168.254.31) 56(84) bytes of data.
+
+...although that might not be necessary from inside of a Ruby script to do that connecting :)

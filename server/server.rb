@@ -10,6 +10,7 @@ require 'pry'
 set :server, 'thin'
 set :bind, '0.0.0.0'
 set :sockets, []
+set :raw_sockets, []
 set :num_leds, 1200
 set :version, File.read('.version').chomp
 
@@ -44,10 +45,15 @@ def play
       frame = settings.renderer.render
 
       threads = [
-        Thread.new { serial_out.write frame }
+        #Thread.new { serial_out.write frame }
       ] + settings.sockets.collect do |s|
         Thread.new do
           byte_string = frame.map(&:to_rgba_bytes).join("")
+          s.send(Base64.encode64(byte_string))
+        end
+      end + settings.raw_sockets.collect do |s|
+        Thread.new do
+          byte_string = frame.map(&:to_rgb_bytes).join("")
           s.send(Base64.encode64(byte_string))
         end
       end
@@ -77,6 +83,22 @@ get '/subscribe' do
 
       ws.onclose do
         settings.sockets.delete(ws)
+      end
+    end
+  else
+    "for websockets only"
+  end
+end
+
+get '/sync' do
+  if request.websocket?
+    request.websocket do |ws|
+      ws.onopen do
+        settings.raw_sockets << ws
+      end
+
+      ws.onclose do
+        settings.raw_sockets.delete(ws)
       end
     end
   else

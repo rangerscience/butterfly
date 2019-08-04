@@ -1,0 +1,8 @@
+source 'https://rubygems.org'
+ruby '2.5.5'
+
+gem 'websocket-client-simple'
+gem 'rubyserial'
+
+gem 'pry', require: true
+gem 'rspec'
