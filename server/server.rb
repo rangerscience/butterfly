@@ -8,6 +8,7 @@ end
 require 'pry'
 
 set :server, 'thin'
+set :bind, '0.0.0.0'
 set :sockets, []
 set :num_leds, 4400
 set :version, File.read('.version').chomp
