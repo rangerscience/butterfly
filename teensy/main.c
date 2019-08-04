@@ -16,6 +16,7 @@ void setup() {
 
   FastLED.addLeds<OCTOWS2811>(_LEDS, LEDS_PER_STRIP);
   FastLED.setBrightness( 255 );
+  FastLED.setMaxPowerInVoltsAndMilliamps(5,6250);
 
   for(int j = 0; j < NUM_LEDS; j++) {
     _LEDS[j] = CRGB::White;
