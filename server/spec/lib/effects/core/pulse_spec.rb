@@ -69,8 +69,6 @@ describe Pulse do
     ).to eq(strip_colors[25..30])
   end
 
-# This would be nice, but it's a lot harder than it at first looks
-# What you really want to test is move + pulse wrapping
   # it "wraps" do
   #   p = Effects::Core::Pulse.new(
   #     p: 0,
