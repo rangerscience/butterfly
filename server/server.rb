@@ -87,8 +87,8 @@ get '/preview' do
 end
 
 
-get '/pry' do
-  binding.pry
-end
+# get '/pry' do
+#   binding.pry
+# end
 
 $t = play
