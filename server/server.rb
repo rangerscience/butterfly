@@ -10,7 +10,7 @@ require 'pry'
 set :server, 'thin'
 set :bind, '0.0.0.0'
 set :sockets, []
-set :num_leds, 4400
+set :num_leds, 1200
 set :version, File.read('.version').chomp
 
 class Renderer
@@ -41,20 +41,21 @@ def play
 
   Thread.new do
     while(settings.playing)
-      # Render frame
       frame = settings.renderer.render
 
-      # Write out to serial ports
-      serial_out.write frame
-
-      # Write out to websockets
-      settings.sockets.each do |s|
-        byte_string = frame.map(&:to_rgba_bytes).join("")
-        s.send(Base64.encode64(byte_string))
+      threads = [
+        Thread.new { serial_out.write frame }
+      ] + settings.sockets.collect do |s|
+        Thread.new do
+          byte_string = frame.map(&:to_rgba_bytes).join("")
+          s.send(Base64.encode64(byte_string))
+        end
       end
 
+      threads.map(&:join)
+
       # Give other threads some time
-      sleep(0.1)
+      sleep(0.01)
     end
   end
 end
@@ -87,9 +88,14 @@ get '/preview' do
   slim :preview
 end
 
-
 # get '/pry' do
 #   binding.pry
 # end
 
 $t = play
+
+trap "SIGINT" do
+  settings.playing = false
+  $t.join
+  exit 130
+end
